@@ -59,6 +59,7 @@ app.get("/tasks/:id", req, res => {
     }
 });
 
+// Bei /POST habe ich etwas Hilfe von ChatGPT gebraucht
 // POST /tasks (Fügt einen neue Task hinzu)
 app.post("/tasks", (req, res) => {
     const newTask =req.body;
@@ -85,6 +86,13 @@ app.put("/tasks/:id", (req, res) => {
     } else {
         res.status(404).json({message: "Taskkonnte nicht gefunden werden"});
     }
+});
+
+// DELETE (löscht die Task mit der angegebenen id)
+app.delete("tasks/:id", (req, res) => {
+    const id = req.params.is;
+    const tasks = tasks.filter(b => b.id !== id);
+    res.status(404).send();
 });
 
 
