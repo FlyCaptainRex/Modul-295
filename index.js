@@ -20,16 +20,23 @@ let tasks = [
     // Task 1
     {
         id: 1,
-        titel: "Einkaufen",
+        titel: "Einkaufen gehen",
         beschreibung: "4 Birnen, 2 Äpfel, 1 Blätterteig, 1kg Zucker, 1kg Mehl"
     },
 
     // Task 2
     {
         id: 2,
-        titel: "MTG Bestellung",
+        titel: "MTG Bestellung machen",
         beschreibung: "4 Cloudpost, 4 Glimmerpost, 2 Terminate, 1 Emrakul, the Aeons Torn"
-    }
+    },
+
+    // Task 3
+    {
+        id: 3,
+        titel: "Französisch Voci lernen",
+        beschreibung: "Die 150 Vocis auf Quizlet lernen"
+    },
     // Hier kann man weitere Tasks hinzufügen...
 ]
 
@@ -71,6 +78,13 @@ app.put("/tasks/:id", (req, res) => {
     const updatedTask = req.body
     //Sucht nach der Task mit der angegebenen id und updated diese.
     const index = tasks.findIndex(b => b.id === id);
+
+    if (index !== -1) {
+        tasks[index] = updatedTask;
+        res.status(200).json(updatedTask);
+    } else {
+        res.status(404).json({message: "Taskkonnte nicht gefunden werden"});
+    }
 });
 
 
