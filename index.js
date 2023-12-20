@@ -92,8 +92,10 @@ app.post('/login', (req, res) => {
     }
 });
 
-
-
+// GET /verify (Überprüft die Gültigkeit des Tokens)
+app.get("/verify", authenticate, (req, res) => {
+    res.status(200).json({ message: 'Das Token ist gültig', user: req.user });
+});
 
 // GET /tasks (Listet alle Tasks auf)
 app.get("/tasks",authenticate, (req, res) => {
